@@ -4,7 +4,6 @@ import unittest
 from secure_all import AccessManager, AccessManagementException, \
     AccessKey, JSON_FILES_PATH, KeysJsonStore, RequestJsonStore
 
-
 class TestAccessManager(unittest.TestCase):
     """test class for open_door"""
     # pylint: disable=no-member
@@ -17,6 +16,7 @@ class TestAccessManager(unittest.TestCase):
         keys_store = KeysJsonStore()
         requests_store.empty_store()
         keys_store.empty_store()
+
         # introduce a key valid and not expired and guest
         my_manager = AccessManager()
         my_manager.request_access_code("05270358T", "Pedro Martin",
@@ -56,12 +56,15 @@ class TestAccessManager(unittest.TestCase):
             ("de000a04f3a9b1d15b07e38b166f00f3fb1bf46533f32ac37156faf43e47f722")
         self.assertEqual(True, result)
 
+    """
     def test_open_door_resident(self):
-        """path: regex ok, key is found, expiration date is 0, resident"""
+        path: regex ok, key is found, expiration date is 0, resident ELIA ESTO ESTABA COMENTADO
         my_key = AccessManager()
         result = my_key.open_door\
             ("de000a04f3a9b1d15b07e38b166f00f3fb1bf46533f32ac37156faf43e47f722")
         self.assertEqual(True, result)
+        
+    """
 
     def test_open_door_bad_key_is_not_found(self):
         """path: regex ok, key is not found"""

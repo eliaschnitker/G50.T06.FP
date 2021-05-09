@@ -24,7 +24,14 @@ class AccessManager:
 
         def open_door( self, key ):
             """Opens the door if the key is valid an it is not expired"""
+            """Para la funcionalidad dos debemos registrar en una archivo
+            la marca de tiempo de acceso y el valor de la clave"""
+            my_key = AccessKey.create_key_from_id(key)
+            key_true = my_key.is_valid()
+            if key_true is True:
+                my_key.store_open_door()
             return AccessKey.create_key_from_id(key).is_valid()
+
 
     __instance = None
 
