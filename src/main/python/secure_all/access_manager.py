@@ -33,6 +33,9 @@ class AccessManager:
             return AccessKey.create_key_from_id(key).is_valid()
 
 
+        def RevokeKey(self, file):
+            """Tenemos que leer el archivo para encontrar la llave"""
+
     __instance = None
 
     def __new__( cls ):

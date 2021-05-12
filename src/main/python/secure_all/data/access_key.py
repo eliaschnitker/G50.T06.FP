@@ -98,6 +98,16 @@ class AccessKey():
         """Setter of the key value"""
         self.__key = value
 
+    @property
+    def issued_at(self):
+        """Property that represents the access_code of the visitor"""
+        return self.__issued_at
+
+    @issued_at.setter
+    def issued_at(self, value):
+        """access_code setter"""
+        self.__issued_at = value
+
     def store_keys(self):
         """Storing the key in the keys store """
         keys_store = KeysJsonStore()

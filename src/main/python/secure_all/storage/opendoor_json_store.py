@@ -1,3 +1,5 @@
+import json
+
 from secure_all.storage.json_store import JsonStore
 from secure_all.exception.access_management_exception import AccessManagementException
 from secure_all.cfg.access_manager_config import JSON_FILES_PATH
@@ -15,11 +17,13 @@ class OpenDoorJsonStore():
             """Implementing the restrictions related to avoid duplicated keys"""
             # pylint: disable=import-outside-toplevel,cyclic-import
             from secure_all.data.access_key import AccessKey
-
             if not isinstance(item, AccessKey):
                 raise AccessManagementException(self.INVALID_ITEM)
+            self.load_store()
+            self._data_list.append("_AccessKey__key: " + item.key)
+            self._data_list.append("_AccessKey__issued_at: " + str(item.issued_at))
+            self.save_store()
 
-            return super().add_item(item)
     __instance = None
 
     def __new__( cls ):
