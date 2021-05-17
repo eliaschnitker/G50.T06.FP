@@ -13,13 +13,14 @@ class AccessRequest:
     """Class representing the access request"""
     #pylint: disable=too-many-arguments
 
-    def __init__( self, id_document, full_name, access_type, email_address, validity ):
+    def __init__( self, id_document, full_name, access_type, email_address, validity):
         self.__id_document = Dni(id_document).value
         self.__name = FullName(full_name).value
         access_type_object = AccessType(access_type)
         self.__visitor_type = access_type_object.value
         self.__email_address = Email(email_address).value
         self.__validity = access_type_object.validate_days(validity)
+        self.__acess_code = self.access_code
         access_type_object = None
         #justnow = datetime.utcnow()
         #self.__time_stamp = datetime.timestamp(justnow)
@@ -90,15 +91,15 @@ class AccessRequest:
         """Load from the store an AccessRequest from the access_code
         and the dni"""
         request_store = RequestJsonStore()
-        request_stored = request_store.find_item(dni)
+        request_stored = request_store.find_item(access_code)
         if request_stored is None:
             raise AccessManagementException(request_store.NOT_FOUND_IN_THE_STORE)
 
         request_stored_object = cls(request_stored[ request_store.ID_FIELD ],
-                                        request_stored[ request_store.REQUEST__NAME ],
-                                        request_stored[ request_store.REQUEST__VISITOR_TYPE ],
-                                        request_stored[ request_store.REQUEST__EMAIL_ADDRESS ],
-                                        request_stored[ request_store.ACCESS_REQUEST__VALIDITY ])
+                                    request_stored[ request_store.REQUEST__NAME ],
+                                    request_stored[ request_store.REQUEST__VISITOR_TYPE ],
+                                    request_stored[ request_store.REQUEST__EMAIL_ADDRESS ],
+                                    request_stored[ request_store.ACCESS_REQUEST__VALIDITY ])
 
         if not request_stored_object.access_code == access_code:
             raise AccessManagementException(request_store.NOT_CORRECT_FOR_THIS_DNI)
