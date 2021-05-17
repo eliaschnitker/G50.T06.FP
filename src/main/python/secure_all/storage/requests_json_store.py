@@ -12,7 +12,7 @@ class RequestJsonStore():
         # pylint: disable=invalid-name
         NOT_CORRECT_FOR_THIS_DNI = "access code is not correct for this DNI"
         INVALID_ITEM = "Invalid item to be stored as a request"
-        ID_DOCUMENT_ALREADY_STORED = "id_document found in storeRequest"
+        ACCESS_CODE_ALREADY_STORED = "Access Code found in storeRequest"
         NOT_FOUND_IN_THE_STORE = "DNI is not found in the store"
         ACCESS_REQUEST__VALIDITY = '_AccessRequest__validity'
         REQUEST__EMAIL_ADDRESS = '_AccessRequest__email_address'
@@ -33,8 +33,8 @@ class RequestJsonStore():
             if not isinstance(item,AccessRequest):
                 raise AccessManagementException(self.INVALID_ITEM)
 
-            if not self.find_item(item.id_document) is None:
-                raise AccessManagementException(self.ID_DOCUMENT_ALREADY_STORED)
+            if not self.find_item(item.access_code) is None:
+                raise AccessManagementException(self.ACCESS_CODE_ALREADY_STORED)
 
             return super().add_item(item)
 
