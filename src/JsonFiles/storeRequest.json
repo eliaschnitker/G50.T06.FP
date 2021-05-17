@@ -1,11 +1,29 @@
 [
   {
+    "_AccessRequest__id_document": "05270358T",
+    "_AccessRequest__name": "Pedro Martin",
+    "_AccessRequest__visitor_type": "Resident",
+    "_AccessRequest__email_address": "uc3m@gmail.com",
+    "_AccessRequest__validity": 0,
+    "_AccessRequest__access_code": "023a179f87329f3123e36a6d3090c643",
+    "_AccessRequest__time_stamp": 1614962381.90867
+  },
+  {
     "_AccessRequest__id_document": "53935158C",
     "_AccessRequest__name": "Marta Lopez",
     "_AccessRequest__visitor_type": "Guest",
     "_AccessRequest__email_address": "uc3m@gmail.com",
     "_AccessRequest__validity": 5,
-    "_AccessRequest__acess_code": "cae4f65a8cc8db62d7bac68fdd039b24",
+    "_AccessRequest__access_code": "cae4f65a8cc8db62d7bac68fdd039b24",
+    "_AccessRequest__time_stamp": 1614962381.90867
+  },
+  {
+    "_AccessRequest__id_document": "68026939T",
+    "_AccessRequest__name": "Juan Perez",
+    "_AccessRequest__visitor_type": "Guest",
+    "_AccessRequest__email_address": "expired@gmail.com",
+    "_AccessRequest__validity": 2,
+    "_AccessRequest__access_code": "1ed7e13e85987468cded2eb795b2c963",
     "_AccessRequest__time_stamp": 1614962381.90867
   }
 ]

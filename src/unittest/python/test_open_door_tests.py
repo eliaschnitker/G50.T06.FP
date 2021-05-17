@@ -55,7 +55,7 @@ class TestAccessManager(unittest.TestCase):
         """path: regex ok , key is found , key is not expired, guest"""
         my_key = AccessManager()
         result = my_key.open_door\
-            ("28fb20481c7f3a1d99ba5684b1b4fb37cac5370cb16d08ffd9ef34970c1bd11c")
+            ("038298b3d45cda6d9991905a53eed1d409cf057b6380bcf3cea6bd5b23782713")
         self.assertEqual(True, result)
 
 
@@ -63,7 +63,7 @@ class TestAccessManager(unittest.TestCase):
         """path: regex ok, key is found, expiration date is 0, resident"""
         my_key = AccessManager()
         result = my_key.open_door\
-            ("de000a04f3a9b1d15b07e38b166f00f3fb1bf46533f32ac37156faf43e47f722")
+            ("c99535ee8c67fcf8990b8e0c2ae6023c52cd91f9b9277c1716d035a2c016eb57")
         self.assertEqual(True, result)
         
 
@@ -82,7 +82,7 @@ class TestAccessManager(unittest.TestCase):
         my_key = AccessManager()
         with self.assertRaises(AccessManagementException) as c_m:
             my_key.open_door\
-                ("459063166d5a8e38ac493d4f523e31cca39bdc2c523d12dc08cae4a983224495")
+                ("72b5a36746606721bacdd09e85cfbdd5ef75035a9bb0d09da6c7e502f488dda3")
 
         self.assertEqual("key is not found or is expired", c_m.exception.message)
 

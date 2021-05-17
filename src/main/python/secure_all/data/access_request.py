@@ -20,7 +20,7 @@ class AccessRequest:
         self.__visitor_type = access_type_object.value
         self.__email_address = Email(email_address).value
         self.__validity = access_type_object.validate_days(validity)
-        self.__acess_code = self.access_code
+        self.__access_code = self.access_code
         access_type_object = None
         #justnow = datetime.utcnow()
         #self.__time_stamp = datetime.timestamp(justnow)
@@ -91,7 +91,7 @@ class AccessRequest:
         """Load from the store an AccessRequest from the access_code
         and the dni"""
         request_store = RequestJsonStore()
-        request_stored = request_store.find_item(access_code)
+        request_stored = request_store.find_item(dni)
         if request_stored is None:
             raise AccessManagementException(request_store.NOT_FOUND_IN_THE_STORE)
 
@@ -101,6 +101,6 @@ class AccessRequest:
                                     request_stored[ request_store.REQUEST__EMAIL_ADDRESS ],
                                     request_stored[ request_store.ACCESS_REQUEST__VALIDITY ])
 
-        if not request_stored_object.access_code == access_code:
+        if not request_stored_object.id_document == dni:
             raise AccessManagementException(request_store.NOT_CORRECT_FOR_THIS_DNI)
         return request_stored_object
