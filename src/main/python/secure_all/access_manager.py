@@ -2,6 +2,8 @@
 
 from secure_all.data.access_key import AccessKey
 from secure_all.data.access_request import AccessRequest
+from secure_all.data.access_opendoor import AccessOpendoor
+
 
 
 class AccessManager:
@@ -14,7 +16,6 @@ class AccessManager:
         def request_access_code(id_card, name_surname, access_type, email_address, days):
             """ this method give access to the building"""
             my_request = AccessRequest(id_card, name_surname, access_type, email_address, days)
-            code = my_request.access_code
             my_request.store_request()
             return my_request.access_code
 
@@ -28,14 +29,10 @@ class AccessManager:
         @staticmethod
         def open_door(key):
             """Opens the door if the key is valid an it is not expired"""
-            """Para la funcionalidad dos debemos registrar en una archivo
-            la marca de tiempo de acceso y el valor de la clave"""
-            my_key = AccessKey.create_key_from_id(key)
-            key_true = my_key.is_valid()
+            key_true = AccessOpendoor.valid(key)
             if key_true is True:
-                my_key.store_open_door()
-            return AccessKey.create_key_from_id(key).is_valid()
-
+                AccessOpendoor.store_open_door()
+            return True
 
         def RevokeKey(self, file):
             """ Abrimos archivo de RevokeKey

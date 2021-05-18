@@ -10,7 +10,6 @@ from secure_all.data.attributes.attribute_email_list import EmailList
 from secure_all.data.attributes.attribute_key import Key
 
 from secure_all.storage.keys_json_store import KeysJsonStore
-from secure_all.storage.opendoor_json_store import OpenDoorJsonStore
 from secure_all.parser.key_json_parser import KeyJsonParser
 
 
@@ -113,10 +112,6 @@ class AccessKey():
         keys_store = KeysJsonStore()
         keys_store.add_item(self)
 
-    def store_open_door(self):
-        """Storing the key in the keys store """
-        keys_store = OpenDoorJsonStore()
-        keys_store.add_item(self)
 
     def is_valid( self ):
         """Return true if the key is not expired"""
@@ -148,3 +143,4 @@ class AccessKey():
         return cls(key_object[keys_store.DNI],
                    key_object[keys_store.ACCESS_CODE],
                    key_object[keys_store.MAIL_LIST])
+

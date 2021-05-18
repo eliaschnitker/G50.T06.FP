@@ -5,8 +5,10 @@ from secure_all import AccessManager, AccessManagementException, \
     AccessKey, JSON_FILES_PATH, KeysJsonStore, RequestJsonStore
 from secure_all.storage.opendoor_json_store import OpenDoorJsonStore
 
+
 class TestAccessManager(unittest.TestCase):
     """test class for open_door"""
+
     # pylint: disable=no-member
 
     @classmethod
@@ -14,30 +16,28 @@ class TestAccessManager(unittest.TestCase):
         # first af all, i introduce all value tha I need for the estructural testing
         # remove the old storeKeys
         requests_store = RequestJsonStore()
-        keys_store = KeysJsonStore()
-        open_door_store = OpenDoorJsonStore()
         requests_store.empty_store()
+        keys_store = KeysJsonStore()
         keys_store.empty_store()
-        open_door_store.empty_store()
         # introduce a key valid and not expired and guest
         my_manager = AccessManager()
         my_manager.request_access_code("05270358T", "Pedro Martin",
-                                               "Resident", "uc3m@gmail.com", 0)
+                                       "Resident", "uc3m@gmail.com", 0)
 
         my_manager.request_access_code("53935158C", "Marta Lopez",
-                                               "Guest", "uc3m@gmail.com", 5)
+                                       "Guest", "uc3m@gmail.com", 5)
 
-        my_manager.get_access_key(JSON_FILES_PATH  + "key_ok.json")
+        my_manager.get_access_key(JSON_FILES_PATH + "key_ok.json")
 
         # introduce a key valid and expiration date = 0 , resident
-        my_manager.get_access_key(JSON_FILES_PATH  + "key_ok3_resident.json")
+        my_manager.get_access_key(JSON_FILES_PATH + "key_ok3_resident.json")
 
         # introduce a key expirated, I need to change expiration date before to store the key
         my_manager.request_access_code("68026939T", "Juan Perez",
                                        "Guest", "expired@gmail.com", 2)
         # expected result 383a8eb306459919ef0dc819405f16a6
         # We generate the AccessKey for this AccessRequest
-        my_key_expirated = AccessKey.create_key_from_file(JSON_FILES_PATH  +
+        my_key_expirated = AccessKey.create_key_from_file(JSON_FILES_PATH +
                                                           "key_ok_testing_expired.json")
         # We manipulate the expiration date to obtain an expired AccessKey
         my_key_expirated.expiration_date = 0
@@ -47,32 +47,29 @@ class TestAccessManager(unittest.TestCase):
         """path: regex is not valid , key length is 63 chars"""
         my_key = AccessManager()
         with self.assertRaises(AccessManagementException) as c_m:
-            my_key.open_door\
+            my_key.open_door \
                 ("cc161c01a4bcca82e841b3446e2a3edb3539d72a3a7ec40a07d236998482906")
         self.assertEqual("key invalid", c_m.exception.message)
 
     def test_open_door_good(self):
         """path: regex ok , key is found , key is not expired, guest"""
         my_key = AccessManager()
-        result = my_key.open_door\
-            ("038298b3d45cda6d9991905a53eed1d409cf057b6380bcf3cea6bd5b23782713")
+        result = my_key.open_door \
+            ("555ef4c47e24ef06ed45f773799fa5cc0c5ceb36f674d519760e29456aa53d21")
         self.assertEqual(True, result)
-
 
     def test_open_door_resident(self):
         """path: regex ok, key is found, expiration date is 0, resident"""
         my_key = AccessManager()
-        result = my_key.open_door\
-            ("c99535ee8c67fcf8990b8e0c2ae6023c52cd91f9b9277c1716d035a2c016eb57")
+        result = my_key.open_door \
+            ("555ef4c47e24ef06ed45f773799fa5cc0c5ceb36f674d519760e29456aa53d21")
         self.assertEqual(True, result)
-        
-
 
     def test_open_door_bad_key_is_not_found(self):
         """path: regex ok, key is not found"""
         my_key = AccessManager()
         with self.assertRaises(AccessManagementException) as c_m:
-            my_key.open_door\
+            my_key.open_door \
                 ("fff00d78646ed41a91d60ec2fc1ed326238e510134ca52e5d9b1de5cbdf2b8ab")
 
         self.assertEqual("key is not found or is expired", c_m.exception.message)
@@ -81,10 +78,12 @@ class TestAccessManager(unittest.TestCase):
         """Expired key generated in the SetUpClass method"""
         my_key = AccessManager()
         with self.assertRaises(AccessManagementException) as c_m:
-            my_key.open_door\
-                ("72b5a36746606721bacdd09e85cfbdd5ef75035a9bb0d09da6c7e502f488dda3")
+            my_key.open_door \
+                ("7bd9492a4e3a6e21496d989cae8c94f49e9e7f3eaee31434c5a66db185c6ba6a")
 
         self.assertEqual("key is not found or is expired", c_m.exception.message)
 
+
 if __name__ == '__main__':
     unittest.main()
+

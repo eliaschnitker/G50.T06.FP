@@ -10,7 +10,7 @@ class RequestJsonStore():
 
     class __RequestJsonStore(JsonStore):
         # pylint: disable=invalid-name
-        NOT_CORRECT_FOR_THIS_DNI = "access code is not correct for this DNI"
+        NOT_CORRECT_FOR_THIS_DNI = "Access Code is not correct for this DNI"
         INVALID_ITEM = "Invalid item to be stored as a request"
         ACCESS_CODE_ALREADY_STORED = "Access Code found in storeRequest"
         NOT_FOUND_IN_THE_STORE = "Access Code is not found in the store"
@@ -18,10 +18,11 @@ class RequestJsonStore():
         REQUEST__EMAIL_ADDRESS = '_AccessRequest__email_address'
         REQUEST__VISITOR_TYPE = '_AccessRequest__visitor_type'
         REQUEST__NAME = '_AccessRequest__name'
-        ID_FIELD = '_AccessRequest__id_document'
-        REQUEST_ACCESS_CODE = '_AccessRequest__access_code'
+        REQUEST_DNI = '_AccessRequest__id_document'
+        ID_FIELD = '_AccessRequest__access_code'
         _FILE_PATH = JSON_FILES_PATH + "storeRequest.json"
         _ID_FIELD = ID_FIELD
+
 
         def add_item( self, item):
             """Implementing the restrictions related to avoid duplicated DNIs in the list

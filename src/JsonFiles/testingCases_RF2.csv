@@ -1,7 +1,7 @@
 VALID INVALID;ID TEST;FILE;EXPECTED RESULT
-VALID;RF2 1;key_ok.json;038298b3d45cda6d9991905a53eed1d409cf057b6380bcf3cea6bd5b23782713
-VALID;RF2 2;key_ok2.json;72b5a36746606721bacdd09e85cfbdd5ef75035a9bb0d09da6c7e502f488dda3
-VALID;RF2 3;key_ok3_resident.json;c99535ee8c67fcf8990b8e0c2ae6023c52cd91f9b9277c1716d035a2c016eb57
+VALID;RF2 1;key_ok.json;c86ce296c4a570c9469893ee47040649935a706fbd86ddcb2dd84f913edace52
+VALID;RF2 2;key_ok2.json;7bd9492a4e3a6e21496d989cae8c94f49e9e7f3eaee31434c5a66db185c6ba6a
+VALID;RF2 3;key_ok3_resident.json;555ef4c47e24ef06ed45f773799fa5cc0c5ceb36f674d519760e29456aa53d21
 INVALID;RF2 4;bad_dni_character_invalid.json;DNI is not valid
 INVALID;RF2 5;bad_dni_numeric_character.json;DNI is not valid
 INVALID;RF2 6;bad_email_at_character.json;Email invalid
@@ -51,7 +51,7 @@ INVALID;RF2 49;key_bad_label3.json;JSON Decode Error - Wrong label
 INVALID;RF2 50;key_eliminated_comma.json;JSON Decode Error - Wrong JSON Format
 INVALID;RF2 51;key_empty_json.json;JSON Decode Error - Wrong JSON Format
 INVALID;RF2 52;key_incorrect_dni_letter.json;DNI is not valid
-INVALID;RF2 53;key_nok.json;access code is not correct for this DNI
+INVALID;RF2 53;key_nok.json;Access Code is not correct for this DNI
 INVALID;RF2 54;key_without_bracket.json;JSON Decode Error - Wrong JSON Format
 INVALID;RF2 55;key_without_final_bracket.json;JSON Decode Error - Wrong JSON Format
 INVALID;RF2 56;key_without_open_bracket_mail.json;JSON Decode Error - Wrong JSON Format
