@@ -3,6 +3,7 @@ import json
 from secure_all import AccessManagementException
 from secure_all.data.attributes.attribute_key import Key
 from secure_all.storage.revoke_key_store import RevokeKeyStore
+from secure_all.storage.keys_json_store import KeysJsonStore
 
 class AccessRevokeKey():
 
@@ -54,3 +55,16 @@ class AccessRevokeKey():
     def emails(self, value):
         self.__notification_emails = value
 
+    def store_revoke_keys(self):
+        door_access = RevokeKeyStore()
+        door_access.add_item(self)
+
+    def ckeck_if_key_is_revoke(self):
+        keys_store = KeysJsonStore()
+        key_search = keys_store.find_item(self.__key)
+        if key_search is None:
+            raise AccessManagementException("La clave recibida no existe.")
+        revoke_keys_store = RevokeKeyStore()
+        revoke_search = revoke_keys_store.find_item(self.__key)
+        if revoke_search is not None:
+            raise AccessManagementException("La clave fue revocada previamente por este método")
