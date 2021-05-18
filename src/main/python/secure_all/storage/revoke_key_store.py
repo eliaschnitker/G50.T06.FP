@@ -10,8 +10,8 @@ class RevokeKeyStore():
         ACCESS_CODE = "_AccessKey__access_code"
         DNI = "_AccessKey__dni"
         MAIL_LIST = "_AccessKey__notification_emails"
-        INVALID_ITEM = "Invalid item to be stored as a key"
-        KEY_ALREADY_STORED = "key already found in storeRequest"
+        INVALID_ITEM = "Invalid item"
+        KEY_ALREADY_REVOKE = "key already revoke in revokeKeyStore"
         NOT_FOUND_IN_THE_STORE = "Not found in de storeKey"
 
         _FILE_PATH = JSON_FILES_PATH + "storeKeys.json"
