@@ -17,8 +17,10 @@ class TestAccessManager(unittest.TestCase):
         # remove the old storeKeys
         requests_store = RequestJsonStore()
         keys_store = KeysJsonStore()
+        open_door = OpenDoorJsonStore()
         requests_store.empty_store()
         keys_store.empty_store()
+        open_door.empty_store()
         # introduce a key valid and not expired and guest
         my_manager = AccessManager()
         my_manager.request_access_code("05270358T", "Pedro Martin",
