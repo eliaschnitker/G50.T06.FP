@@ -9,6 +9,11 @@ class AccessRevokeKey():
         self.__key = Key(key).value
         self.__revocation = revocation
         self.__reason = reason
+        self.__emails = []
+        # justnow = datetime.utcnow()
+        # self.__issued_at = datetime.timestamp(justnow)
+        # fix self.__issued_at only for testing 13-3-2021 18_49
+        self.__issued_at = 1615627129.580297
 
     @property
     def key(self):
@@ -40,15 +45,11 @@ class AccessRevokeKey():
         """Setter of the key value"""
         self.__reason = value
 
-    @staticmethod
-    def read_file(file):
-        """read the list of stored elements"""
-        try:
-            with open(file, "r", encoding="utf-8", newline="") as my_file:
-                data = json.load(my_file)
-        except FileNotFoundError as ex:
-            raise AccessManagementException("Wrong file or file path") from ex
-        except json.JSONDecodeError as ex:
-            raise AccessManagementException("JSON Decode Error - Wrong JSON Format") from ex
-        return data
+    @property
+    def emails(self):
+        return self.__emails
+
+    @emails.setter
+    def emails(self, value):
+        self.__emails = value
 
