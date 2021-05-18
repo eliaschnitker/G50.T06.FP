@@ -13,6 +13,16 @@ class AccessOpendoor:
     def __str__(self):
         return "OpenDoor: " + json.dumps(self.__dict__)
 
+    @property
+    def key(self):
+        """Property that represent the key"""
+        return self.__key
+
+    @key.setter
+    def key(self, value):
+        """Setter of the key value"""
+        self.__key = value
+
     def store_open_door(self):
         """Storing the key in the keys store """
         keys_store = OpenDoorJsonStore()

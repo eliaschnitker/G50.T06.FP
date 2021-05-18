@@ -29,9 +29,8 @@ class AccessManager:
         @staticmethod
         def open_door(key):
             """Opens the door if the key is valid an it is not expired"""
-            key_true = AccessOpendoor.valid(key)
-            if key_true is True:
-                AccessOpendoor.store_open_door()
+            my_door=AccessOpendoor.valid(key)
+            my_door.store_open_door()
             return True
 
         def RevokeKey(self, file):

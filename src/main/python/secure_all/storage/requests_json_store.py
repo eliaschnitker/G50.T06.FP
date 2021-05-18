@@ -18,7 +18,7 @@ class RequestJsonStore():
         REQUEST__EMAIL_ADDRESS = '_AccessRequest__email_address'
         REQUEST__VISITOR_TYPE = '_AccessRequest__visitor_type'
         REQUEST__NAME = '_AccessRequest__name'
-        REQUEST_DNI = '_AccessRequest__id_document'
+        REQUEST__DNI = '_AccessRequest__id_document'
         ID_FIELD = '_AccessRequest__access_code'
         _FILE_PATH = JSON_FILES_PATH + "storeRequest.json"
         _ID_FIELD = ID_FIELD
@@ -34,7 +34,7 @@ class RequestJsonStore():
             if not isinstance(item,AccessRequest):
                 raise AccessManagementException(self.INVALID_ITEM)
 
-            if not self.find_item(item.access_code) is None:
+            if not self.find_item(item.id_document) is None:
                 raise AccessManagementException(self.ACCESS_CODE_ALREADY_STORED)
 
             return super().add_item(item)

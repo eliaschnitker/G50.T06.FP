@@ -16,8 +16,8 @@ class TestAccessManager(unittest.TestCase):
         # first af all, i introduce all value tha I need for the estructural testing
         # remove the old storeKeys
         requests_store = RequestJsonStore()
-        requests_store.empty_store()
         keys_store = KeysJsonStore()
+        requests_store.empty_store()
         keys_store.empty_store()
         # introduce a key valid and not expired and guest
         my_manager = AccessManager()
@@ -43,6 +43,7 @@ class TestAccessManager(unittest.TestCase):
         my_key_expirated.expiration_date = 0
         my_key_expirated.store_keys()
 
+
     def test_open_door_bad_key_regex(self):
         """path: regex is not valid , key length is 63 chars"""
         my_key = AccessManager()
@@ -55,14 +56,14 @@ class TestAccessManager(unittest.TestCase):
         """path: regex ok , key is found , key is not expired, guest"""
         my_key = AccessManager()
         result = my_key.open_door \
-            ("555ef4c47e24ef06ed45f773799fa5cc0c5ceb36f674d519760e29456aa53d21")
+            ("de000a04f3a9b1d15b07e38b166f00f3fb1bf46533f32ac37156faf43e47f722")
         self.assertEqual(True, result)
 
     def test_open_door_resident(self):
         """path: regex ok, key is found, expiration date is 0, resident"""
         my_key = AccessManager()
         result = my_key.open_door \
-            ("555ef4c47e24ef06ed45f773799fa5cc0c5ceb36f674d519760e29456aa53d21")
+            ("de000a04f3a9b1d15b07e38b166f00f3fb1bf46533f32ac37156faf43e47f722")
         self.assertEqual(True, result)
 
     def test_open_door_bad_key_is_not_found(self):
@@ -79,8 +80,7 @@ class TestAccessManager(unittest.TestCase):
         my_key = AccessManager()
         with self.assertRaises(AccessManagementException) as c_m:
             my_key.open_door \
-                ("7bd9492a4e3a6e21496d989cae8c94f49e9e7f3eaee31434c5a66db185c6ba6a")
-
+                ("459063166d5a8e38ac493d4f523e31cca39bdc2c523d12dc08cae4a983224495")
         self.assertEqual("key is not found or is expired", c_m.exception.message)
 
 

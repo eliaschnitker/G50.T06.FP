@@ -20,12 +20,12 @@ class AccessRequest:
         self.__visitor_type = access_type_object.value
         self.__email_address = Email(email_address).value
         self.__validity = access_type_object.validate_days(validity)
-        self.__access_code = hashlib.md5(self.__str__().encode()).hexdigest()
         access_type_object = None
         #justnow = datetime.utcnow()
         #self.__time_stamp = datetime.timestamp(justnow)
         #only for testing , fix de time stamp to this value 1614962381.90867 , 5/3/2020 18_40
         self.__time_stamp = 1614962381.90867
+        self.__access_code = hashlib.md5(self.__str__().encode()).hexdigest()
 
     def __str__(self):
         """It returns the json corresponding to the AccessRequest"""
@@ -95,7 +95,7 @@ class AccessRequest:
         if request_stored is None:
             raise AccessManagementException(request_store.NOT_FOUND_IN_THE_STORE)
 
-        request_stored_object = cls(request_stored[ request_store.REQUEST_DNI ],
+        request_stored_object = cls(request_stored[ request_store.REQUEST__DNI ],
                                     request_stored[ request_store.REQUEST__NAME ],
                                     request_stored[ request_store.REQUEST__VISITOR_TYPE ],
                                     request_stored[ request_store.REQUEST__EMAIL_ADDRESS ],
