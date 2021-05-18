@@ -2,6 +2,7 @@ import json
 
 from secure_all import AccessManagementException
 from secure_all.data.attributes.attribute_key import Key
+from secure_all.storage.revoke_key_store import RevokeKeyStore
 
 class AccessRevokeKey():
 
@@ -9,7 +10,7 @@ class AccessRevokeKey():
         self.__key = Key(key).value
         self.__revocation = revocation
         self.__reason = reason
-        self.__emails = []
+        self.__notification_emails = []
         # justnow = datetime.utcnow()
         # self.__issued_at = datetime.timestamp(justnow)
         # fix self.__issued_at only for testing 13-3-2021 18_49
@@ -47,9 +48,9 @@ class AccessRevokeKey():
 
     @property
     def emails(self):
-        return self.__emails
+        return self.__notification_emails
 
     @emails.setter
     def emails(self, value):
-        self.__emails = value
+        self.__notification_emails = value
 
