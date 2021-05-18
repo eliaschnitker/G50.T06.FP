@@ -3,8 +3,7 @@
 from secure_all.data.access_key import AccessKey
 from secure_all.data.access_request import AccessRequest
 from secure_all.data.access_opendoor import AccessOpendoor
-
-
+from secure_all.data.access_revoke_key import AccessRevokeKey
 
 class AccessManager:
     """AccessManager class, manages the access to a building implementing singleton """
@@ -38,6 +37,10 @@ class AccessManager:
                 Buscamos la llave
                 Comprobamos si es temporal o final
             """
+            my_file = AccessRevokeKey.read_file(file)
+            
+
+
 
 
     __instance = None

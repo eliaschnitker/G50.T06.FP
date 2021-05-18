@@ -14,6 +14,7 @@ class KeysJsonStore():
         MAIL_LIST = "_AccessKey__notification_emails"
         INVALID_ITEM = "Invalid item to be stored as a key"
         KEY_ALREADY_STORED = "key already found in storeRequest"
+        NOT_FOUND_IN_THE_STORE = "Not found in de storeKey"
 
         _FILE_PATH = JSON_FILES_PATH + "storeKeys.json"
         _ID_FIELD = ID_FIELD
