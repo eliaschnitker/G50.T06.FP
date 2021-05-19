@@ -1,9 +1,9 @@
-"""parser for input key files according to RF2"""
+"""Parser de revoke key"""
 
 from secure_all.parser.json_parser import JsonParser
 
 class RevokeJsonParser(JsonParser):
-    """parser for input key files containing a AccessKey request"""
+    """Parser de revoke key"""
     #pylint: disable=too-few-public-methods
     KEY = "Key"
     REVOCATION = "Revocation"

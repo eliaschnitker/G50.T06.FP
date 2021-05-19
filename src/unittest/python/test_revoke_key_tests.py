@@ -19,4 +19,4 @@ class TestAccessManager(TestCase):
     def test_get_access_key_good(self):
         my_key = AccessManager()
         email = my_key.revoke_key(JSON_FILES_PATH + "test_good.json")
-        self.assertEqual([ "mail1@uc3m.es","mail2@uc3m.es"], email)
+        self.assertEqual(["mail1@uc3m.es","mail2@uc3m.es"], email)

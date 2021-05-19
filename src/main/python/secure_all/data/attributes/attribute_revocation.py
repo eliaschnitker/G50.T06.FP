@@ -1,5 +1,4 @@
 """Attribute class for validating the AccessType"""
-from secure_all.exception.access_management_exception import AccessManagementException
 from secure_all.data.attributes.attribute import Attribute
 
 class Revocation(Attribute):
