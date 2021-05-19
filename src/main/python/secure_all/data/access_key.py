@@ -144,19 +144,3 @@ class AccessKey():
                    key_object[keys_store.ACCESS_CODE],
                    key_object[keys_store.MAIL_LIST])
 
-    @classmethod
-    def is_revoke_key(cls, key, dni):
-        """Creo que estoy haciendo esto para mirar si la llave de revocacion esta"""
-        key_store = KeysJsonStore()
-        key_stored = key_store.find_item(key)
-        if key_stored is None:
-            raise AccessManagementException(key_store.NOT_FOUND_IN_THE_STORE)
-
-        key_store_object= cls(key_stored[key_store.REQUEST__DNI],
-                                    key_stored[key_store.ACCESS_CODE],
-                                    key_stored[key_store.REQUEST__EMAIL_ADDRESS])
-
-        if not key_store_object.dni == dni:
-            raise AccessManagementException(key_store.NOT_CORRECT_FOR_THIS_DNI)
-        return key_store_object
-

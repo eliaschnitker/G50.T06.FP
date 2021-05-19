@@ -8,4 +8,4 @@ class RevokeJsonParser(JsonParser):
     KEY = "Key"
     REVOCATION = "Revocation"
     REASON = "Reason"
-    _key_list =  [KEY, REVOCATION, REASON]
+    _key_list = [KEY, REVOCATION, REASON]

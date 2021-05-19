@@ -32,12 +32,14 @@ class AccessManager:
             my_door.store_open_door()
             return True
 
-        def RevokeKey(self, file):
+        def revoke_key(self, file):
             """ Abrimos archivo de RevokeKey
                 Buscamos la llave
                 Comprobamos si es temporal o final
             """
-            my_file = AccessRevokeKey.read_file(file)
+            revoke_key = AccessRevokeKey.class_revoke_key(file)
+            revoke_key.store_revoke_keys()
+            return revoke_key.notification_emails
             
 
 

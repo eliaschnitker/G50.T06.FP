@@ -14,19 +14,19 @@ class RevokeKeyStore():
         KEY_ALREADY_REVOKE = "key already revoke in revokeKeyStore"
         NOT_FOUND_IN_THE_STORE = "Not found in de storeKey"
 
-        _FILE_PATH = JSON_FILES_PATH + "storeKeys.json"
+        _FILE_PATH = JSON_FILES_PATH + "store_revoke_key.json"
         _ID_FIELD = ID_FIELD
 
         def add_item(self, item):
             """Implementing the restrictions related to avoid duplicated keys"""
             # pylint: disable=import-outside-toplevel,cyclic-import
-            from secure_all.data.access_key import AccessKey
+            from secure_all.data.access_revoke_key import AccessRevokeKey
 
-            if not isinstance(item, AccessKey):
+            if not isinstance(item, AccessRevokeKey):
                 raise AccessManagementException(self.INVALID_ITEM)
 
             if not self.find_item(item.key) is None:
-                raise AccessManagementException(self.KEY_ALREADY_STORED)
+                raise AccessManagementException(self.KEY_ALREADY_REVOKE)
 
             return super().add_item(item)
 
