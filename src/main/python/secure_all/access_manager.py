@@ -35,9 +35,7 @@ class AccessManager:
         def revoke_key(self, file):
             """ Revoke Key"""
             revoke_key = AccessRevokeKey.class_revoke_key(file)
-            revoke_key.store_revoke_keys()
-            return revoke_key.notification_emails
-            
+            return revoke_key.store_revoke_keys()
 
 
 

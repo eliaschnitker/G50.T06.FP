@@ -21,7 +21,6 @@ class AccessRevokeKey():
         self.chek_key(key)
         self.__revocation = Revocation(revocation).value
         self.__reason = self.lenght_reason(reason)
-        self.__notification_emails = []
 
 
 
@@ -69,7 +68,8 @@ class AccessRevokeKey():
         """Para tener el almacen de llaves removidas"""
         revoke_store = RevokeKeyStore()
         revoke_store.add_item(self)
-        return revoke_store
+        email = KeysJsonStore().find_item(self.__key)
+        return email["_AccessKey__notification_emails"]
 
     @classmethod
     def class_revoke_key(cls, key_file):
@@ -97,13 +97,3 @@ class AccessRevokeKey():
         revoke_search = revoke_keys_store.find_item(key)
         if revoke_search is not None:
             raise AccessManagementException(self.ALMOST_REVOKE)
-
-    def cargar_emails(self,key):
-        """Cargamos los emails"""
-        store_key = KeysJsonStore()
-        find_key = store_key.find_item(key)
-        for i in find_key:
-            if i["_AccessKey__key"] == key:
-                """Aqui estamos en el diccionario que queremos"""
-                for k in i["_AccessKey__notification_emails"]:
-                    self.__notification_emails.append(k)
