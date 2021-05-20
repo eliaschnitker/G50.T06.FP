@@ -1,7 +1,6 @@
 """Clase encargada de remover la llave"""
 import json
 from secure_all.exception.access_management_exception import AccessManagementException
-from secure_all.data.access_key import AccessKey
 from secure_all.data.attributes.attribute_key import Key
 from secure_all.data.attributes.attribute_revocation import Revocation
 from secure_all.storage.revoke_key_store import RevokeKeyStore
@@ -18,12 +17,8 @@ class AccessRevokeKey():
 
     def __init__(self, key, revocation, reason):
         self.__key = Key(key).value
-        self.chek_key_exist(key)
-        self.chek_key_no_revoke(key)
         self.__revocation = Revocation(revocation).value
         self.__reason = self.lenght_reason(reason)
-
-
 
     @property
     def key(self):
@@ -35,34 +30,21 @@ class AccessRevokeKey():
         """Setter of the key value"""
         self.__key = value
 
-    @property
-    def revocation(self):
-        """Property that represent the revocation"""
-        return self.__revocation
+    def returns(self):
+        self.chek_key_exist(self.__key)
+        revoke_store = RevokeKeyStore()
+        revoke_store.check_revoke(self.__key)
+        key_store = KeysJsonStore()
+        email = key_store.find_item(self.key)
+        return email[key_store.MAIL_LIST]
 
-    @revocation.setter
-    def revocation(self, value):
-        """Setter of the revocation"""
-        self.__revocation = value
 
-    @property
-    def reason(self):
-        """Property that represent the reason"""
-        return self.__reason
-
-    @reason.setter
-    def reason(self, value):
-        """Setter of the reason"""
-        self.__reason = value
 
     def store_revoke_keys(self):
         """Para tener el almacen de llaves removidas"""
         revoke_store = RevokeKeyStore()
         revoke_store.add_item(self)
-
-    def devolver_email(self):
-        email = KeysJsonStore().find_item(self.__key)
-        return email["_AccessKey__notification_emails"]
+        del revoke_store
 
 
     @classmethod
@@ -87,11 +69,3 @@ class AccessRevokeKey():
         find_key = store_key.find_item(key)
         if find_key is None:
             raise AccessManagementException(self.NO_KEY_EXIST)
-
-    def chek_key_no_revoke(self,key):
-        """Comprobamos que la llave ha sido revocada"""
-        revoke_keys_store = RevokeKeyStore()
-        revoke_search = revoke_keys_store.find_item(key)
-        if revoke_search is not None:
-            raise AccessManagementException(self.ALMOST_REVOKE)
-

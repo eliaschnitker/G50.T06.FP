@@ -8,12 +8,13 @@ class RevokeKeyStore():
     class __RevokeKeyStore(JsonStore):
         """Constantes"""
         # pylint: disable=invalid-name
-        ID_FIELD = "_AccessKey__key"
-        DNI = "_AccessKey__dni"
-        MAIL_LIST = "_AccessKey__notification_emails"
         INVALID_ITEM = "Invalid item"
-        KEY_ALREADY_REVOKE = "LLave ya elimnada de storeKey"
-        NOT_FOUND_IN_THE_STORE = "No encontrada en storeKey"
+        KEY_ALREADY_REVOKE = "La clave fue revocada previamente por este método"
+
+        KEY = "Key"
+        ID_FIELD = "_AccessRevokeKey__key"
+        REVOCATION = "Revocation"
+        REASON = "Reason"
 
         _FILE_PATH = JSON_FILES_PATH + "store_revoke_key.json"
         _ID_FIELD = ID_FIELD
@@ -26,10 +27,12 @@ class RevokeKeyStore():
             if not isinstance(item, AccessRevokeKey):
                 raise AccessManagementException(self.INVALID_ITEM)
 
-            if not self.find_item(item.key) is None:
-                raise AccessManagementException(self.KEY_ALREADY_REVOKE)
-
             return super().add_item(item)
+
+        def check_revoke(self, item):
+            key = super().find_item(item)
+            if key is not None:
+                raise AccessManagementException(self.KEY_ALREADY_REVOKE)
 
     __instance = None
 
