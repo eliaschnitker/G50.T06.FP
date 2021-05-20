@@ -190,3 +190,165 @@ class TestAccessManager(TestCase):
         with self.assertRaises(AccessManagementException) as c_m:
             my_key.revoke_key(JSON_FILES_PATH + "test_archivo_no_existe.json")
         self.assertEqual("Wrong file or file path", c_m.exception.message)
+
+    def test_key_et1_no_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et1_no_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et1_duplicate_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et1_duplicate_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et1_modification_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et1_modification_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et2_no_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et2_no_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et2_duplicate_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et2_duplicate_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et2_modification_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et2_modification_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et3_no_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et3_no_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et3_duplicate_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et3_duplicate_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et3_modification_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et3_modification_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor1_no_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor1_no_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor1_duplicate_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor1_duplicate_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor1_modification_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor1_modification_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor2_no_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor2_no_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor2_duplicate_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor2_duplicate_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor2_modification_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor2_modification_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor3_no_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor3_no_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor3_duplicate_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor3_duplicate_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_valor3_modification_comilla(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_valor3_modification_comilla.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et1_no_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et1_no_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et1_duplicate_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et1_duplicate_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et1_modification_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et1_modification_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et2_no_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et2_no_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et2_duplicate_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et2_duplicate_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et2_modification_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et2_modification_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et3_no_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et3_no_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et3_duplicate_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et3_duplicate_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_et3_modification_igual(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_et3_modification_igual.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
