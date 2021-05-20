@@ -18,7 +18,8 @@ class AccessRevokeKey():
 
     def __init__(self, key, revocation, reason):
         self.__key = Key(key).value
-        self.chek_key(key)
+        self.chek_key_exist(key)
+        self.chek_key_no_revoke(key)
         self.__revocation = Revocation(revocation).value
         self.__reason = self.lenght_reason(reason)
 
@@ -54,22 +55,15 @@ class AccessRevokeKey():
         """Setter of the reason"""
         self.__reason = value
 
-    @property
-    def notification_emails(self):
-        """Property  than represent the emails"""
-        return self.__notification_emails
-
-    @notification_emails.setter
-    def notification_emails(self, value):
-        """Setter of the emails"""
-        self.__notification_emails = value
-
     def store_revoke_keys(self):
         """Para tener el almacen de llaves removidas"""
         revoke_store = RevokeKeyStore()
         revoke_store.add_item(self)
+
+    def devolver_email(self):
         email = KeysJsonStore().find_item(self.__key)
         return email["_AccessKey__notification_emails"]
+
 
     @classmethod
     def class_revoke_key(cls, key_file):
@@ -87,13 +81,17 @@ class AccessRevokeKey():
         return reason
 
 
-    def chek_key(self,key):
-        """Comprobamos que la llave existe y no ha sido revocada"""
+    def chek_key_exist(self,key):
+        """Comprobamos que la llave existe """
         store_key = KeysJsonStore()
         find_key = store_key.find_item(key)
         if find_key is None:
             raise AccessManagementException(self.NO_KEY_EXIST)
+
+    def chek_key_no_revoke(self,key):
+        """Comprobamos que la llave ha sido revocada"""
         revoke_keys_store = RevokeKeyStore()
         revoke_search = revoke_keys_store.find_item(key)
         if revoke_search is not None:
             raise AccessManagementException(self.ALMOST_REVOKE)
+

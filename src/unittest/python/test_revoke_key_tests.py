@@ -16,7 +16,177 @@ class TestAccessManager(TestCase):
             os.remove(my_file)
 
 
-    def test_get_access_key_good(self):
+    def test_good_temporal(self):
         my_key = AccessManager()
-        email = my_key.revoke_key(JSON_FILES_PATH + "test_good.json")
+        email = my_key.revoke_key(JSON_FILES_PATH + "test_good_temporal.json")
         self.assertEqual(["mail1@uc3m.es","mail2@uc3m.es"], email)
+
+    def test_good_final(self):
+        my_key = AccessManager()
+        email = my_key.revoke_key(JSON_FILES_PATH + "test_good_final.json")
+        self.assertEqual(["mail1@uc3m.es","mail2@uc3m.es"], email)
+
+    def test_key_izq_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_izq_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_der_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_der_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_izq_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_izq_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_der_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_der_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_izq_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_izq_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_der_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_der_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_key_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_key_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_separador_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_separador_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_separador_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_separador_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_separador_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_separador_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta1_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta1_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta1_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta1_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta1_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta1_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta2_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta2_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta2_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta2_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta2_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta2_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta3_deletion(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta3_deletion.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta3_duplication(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta3_duplication.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_etiqueta3_modification(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_etiqueta3_modification.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+
+    def test_clave_no_existe(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_clave_no_existe.json")
+        self.assertEqual("La clave recibida no existe.", c_m.exception.message)
+
+    def test_clave_mal_formato(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_clave_mal_formato.json")
+        self.assertEqual("key invalid", c_m.exception.message)
+
+    """
+    def test_clave_ya_revocada(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_clave_ya_revocada.json")
+        self.assertEqual("JSON Decode Error - Wrong JSON Format", c_m.exception.message)
+    
+    """
+    def test_revocacion_mal(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_revocacion_mal.json")
+        self.assertEqual("El tipo de revocacion es invalido", c_m.exception.message)
+
+    def test_razon_mal(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_razon_mal.json")
+        self.assertEqual("Escriba la razon de revocacion", c_m.exception.message)
+
+
+    def test_archivo_no_existe(self):
+        my_key = AccessManager()
+        with self.assertRaises(AccessManagementException) as c_m:
+            my_key.revoke_key(JSON_FILES_PATH + "test_archivo_no_existe.json")
+        self.assertEqual("Wrong file or file path", c_m.exception.message)

@@ -143,4 +143,3 @@ class AccessKey():
         return cls(key_object[keys_store.DNI],
                    key_object[keys_store.ACCESS_CODE],
                    key_object[keys_store.MAIL_LIST])
-
