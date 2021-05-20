@@ -11,6 +11,7 @@ Obtener la key
 Comprobar si es igual
 """
 class TestAccessManager(TestCase):
+
     def setUp(self) -> None:
         revoke_store = RevokeKeyStore()
         revoke_store.empty_store()

@@ -1,5 +1,4 @@
 """Clase encargada de remover la llave"""
-import json
 from secure_all.exception.access_management_exception import AccessManagementException
 from secure_all.data.attributes.attribute_key import Key
 from secure_all.data.attributes.attribute_revocation import Revocation
@@ -14,8 +13,8 @@ class AccessRevokeKey():
     ALMOST_REVOKE = "La clave fue revocada previamente por este método"
     NO_KEY_EXIST = "La clave recibida no existe."
 
-
     def __init__(self, key, revocation, reason):
+        """Constructor"""
         self.__key = Key(key).value
         self.__revocation = Revocation(revocation).value
         self.__reason = self.lenght_reason(reason)
@@ -31,6 +30,9 @@ class AccessRevokeKey():
         self.__key = value
 
     def returns(self):
+        """La funcion devuelve los emails si:
+        -existe la clave
+        - no ha sido revocada ya"""
         self.chek_key_exist(self.__key)
         revoke_store = RevokeKeyStore()
         revoke_store.check_revoke(self.__key)
@@ -55,13 +57,11 @@ class AccessRevokeKey():
                    revoke_key_items[RevokeJsonParser.REVOCATION],
                    revoke_key_items[RevokeJsonParser.REASON])
 
-
     def lenght_reason(self,reason):
         """Comprobamos que existe una razon"""
         if len(reason) == 0:
             raise AccessManagementException(self.REASON_MINUS)
         return reason
-
 
     def chek_key_exist(self,key):
         """Comprobamos que la llave existe """
