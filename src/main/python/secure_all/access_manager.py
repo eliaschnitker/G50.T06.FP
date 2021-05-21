@@ -5,6 +5,7 @@ from secure_all.data.access_request import AccessRequest
 from secure_all.data.access_opendoor import AccessOpendoor
 from secure_all.data.access_revoke_key import AccessRevokeKey
 
+
 class AccessManager:
     """AccessManager class, manages the access to a building implementing singleton """
     #pylint: disable=too-many-arguments,no-self-use,invalid-name, too-few-public-methods

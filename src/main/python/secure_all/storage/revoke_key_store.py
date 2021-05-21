@@ -5,6 +5,7 @@ from secure_all.cfg.access_manager_config import JSON_FILES_PATH
 
 
 class RevokeKeyStore():
+    """Almacen para llaves revocadas"""
     class __RevokeKeyStore(JsonStore):
         """Constantes"""
         # pylint: disable=invalid-name
@@ -30,6 +31,7 @@ class RevokeKeyStore():
             return super().add_item(item)
 
         def check_revoke(self, item):
+            """Comprobamos que la llave no ha sido revocada"""
             key = super().find_item(item)
             if key is not None:
                 raise AccessManagementException(self.KEY_ALREADY_REVOKE)

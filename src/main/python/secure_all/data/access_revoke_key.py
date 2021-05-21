@@ -40,14 +40,11 @@ class AccessRevokeKey():
         email = key_store.find_item(self.key)
         return email[key_store.MAIL_LIST]
 
-
-
     def store_revoke_keys(self):
         """Para tener el almacen de llaves removidas"""
         revoke_store = RevokeKeyStore()
         revoke_store.add_item(self)
         del revoke_store
-
 
     @classmethod
     def class_revoke_key(cls, key_file):
@@ -56,7 +53,6 @@ class AccessRevokeKey():
         return cls(revoke_key_items[RevokeJsonParser.KEY],
                    revoke_key_items[RevokeJsonParser.REVOCATION],
                    revoke_key_items[RevokeJsonParser.REASON])
-
 
     def lenght_reason(self,reason):
         """Comprobamos que existe una razon"""

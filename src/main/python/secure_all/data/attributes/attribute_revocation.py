@@ -2,6 +2,8 @@
 from secure_all.data.attributes.attribute import Attribute
 
 class Revocation(Attribute):
+    """Clase atributo de revocacion"""
+    # pylint: disable=too-few-public-methods
     REVOCATION_TEMPORAL = "Temporal"
     REVOCATION_FINAL = "Final"
 

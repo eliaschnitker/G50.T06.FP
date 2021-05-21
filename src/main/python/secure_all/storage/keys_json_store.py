@@ -34,6 +34,7 @@ class KeysJsonStore():
             return super().add_item(item)
 
         def check_key(self, item):
+            """Comprobamos que existe llave"""
             find_key = super().find_item(item)
             if find_key is None:
                 raise AccessManagementException(self.NO_KEY_EXIST)
