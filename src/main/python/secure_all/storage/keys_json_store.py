@@ -15,6 +15,7 @@ class KeysJsonStore():
         INVALID_ITEM = "Invalid item to be stored as a key"
         KEY_ALREADY_STORED = "key already found in storeRequest"
         NOT_FOUND_IN_THE_STORE = "Not found in de storeKey"
+        NO_KEY_EXIST = "La clave recibida no existe."
 
         _FILE_PATH = JSON_FILES_PATH + "storeKeys.json"
         _ID_FIELD = ID_FIELD
@@ -32,6 +33,10 @@ class KeysJsonStore():
 
             return super().add_item(item)
 
+        def check_key(self, item):
+            find_key = super().find_item(item)
+            if find_key is None:
+                raise AccessManagementException(self.NO_KEY_EXIST)
 
 
     __instance = None

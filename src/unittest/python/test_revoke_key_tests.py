@@ -4,15 +4,12 @@ from secure_all import AccessManager, AccessManagementException, JSON_FILES_PATH
 from secure_all.storage.keys_json_store import KeysJsonStore
 from secure_all.storage.revoke_key_store import RevokeKeyStore
 from pathlib import Path
-"""
-¿Que tengo que hacer?
-Abrir el archivo de test (el que sea para cada tipo)
-Obtener la key
-Comprobar si es igual
-"""
-class TestAccessManager(TestCase):
+""" Test para revoke key"""
 
-    def setUp(self) -> None:
+
+class TestAccessManager(TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
         revoke_store = RevokeKeyStore()
         revoke_store.empty_store()
         key_store = KeysJsonStore()

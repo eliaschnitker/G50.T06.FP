@@ -33,10 +33,10 @@ class AccessRevokeKey():
         """La funcion devuelve los emails si:
         -existe la clave
         - no ha sido revocada ya"""
-        self.chek_key_exist(self.__key)
+        key_store = KeysJsonStore()
+        key_store.check_key(self.__key)
         revoke_store = RevokeKeyStore()
         revoke_store.check_revoke(self.__key)
-        key_store = KeysJsonStore()
         email = key_store.find_item(self.key)
         return email[key_store.MAIL_LIST]
 
@@ -57,15 +57,9 @@ class AccessRevokeKey():
                    revoke_key_items[RevokeJsonParser.REVOCATION],
                    revoke_key_items[RevokeJsonParser.REASON])
 
+
     def lenght_reason(self,reason):
         """Comprobamos que existe una razon"""
         if len(reason) == 0:
             raise AccessManagementException(self.REASON_MINUS)
         return reason
-
-    def chek_key_exist(self,key):
-        """Comprobamos que la llave existe """
-        store_key = KeysJsonStore()
-        find_key = store_key.find_item(key)
-        if find_key is None:
-            raise AccessManagementException(self.NO_KEY_EXIST)
